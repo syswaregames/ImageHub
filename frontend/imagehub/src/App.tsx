@@ -14,7 +14,7 @@ function App() {
   async function onChange(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files![0]) {
 
-      const url_host = 'batmanhub2.com';
+      const url_host = 'batmanhub.com';
       const url_backend = 'http://' + url_host + ':5000/ImageHubApi/image/upload';
 
       const formData = new FormData();
