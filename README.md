@@ -1,6 +1,8 @@
 # ImageHub
 Image database with author, description and tags.
 
+Published on: http://batmanhub:5000/imagehub
+
 BackEnd
 =============
 

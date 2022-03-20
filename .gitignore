@@ -6,6 +6,15 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# backend
+backend/Sysware.API/publish
+backend/bin
+backend/obj
+
+# Mac
+.DS_STORE
+
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -40,6 +49,14 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+front/public/config/config.env.js
+config.env.js
+
+#bin files
+bin/
+obj/
+
+.vscode
 
 # TypeScript v1 declaration files
 typings/
