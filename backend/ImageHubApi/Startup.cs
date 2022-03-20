@@ -37,6 +37,22 @@ namespace ImageHubApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ImageHubApi", Version = "v1" });
             });
+
+            services.AddCors(
+                    (options) =>
+                    {
+                        options.AddDefaultPolicy(
+                            builder =>
+                            {
+                                builder
+                                .AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod()
+                                .SetIsOriginAllowedToAllowWildcardSubdomains();
+                            });
+                    }
+                );
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +68,8 @@ namespace ImageHubApi
                     c.InjectStylesheet("/swagger-ui/SwaggerDark.css");                    
                 });
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
