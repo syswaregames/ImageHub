@@ -1,3 +1,8 @@
+//
+// Patrick Carvalho
+// copyright 2022
+//
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./styles/tailwind.css";
