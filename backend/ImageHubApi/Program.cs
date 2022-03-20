@@ -1,3 +1,10 @@
+
+//
+// Patrick Carvalho
+// copyright 2022
+//
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +21,7 @@ namespace ImageHubApi
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -21,6 +29,7 @@ namespace ImageHubApi
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                            
                 });
     }
 }

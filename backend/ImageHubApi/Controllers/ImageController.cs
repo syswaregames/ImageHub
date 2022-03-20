@@ -1,4 +1,9 @@
 
+//
+// Patrick Carvalho
+// copyright 2022
+//
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +27,7 @@ namespace ImageHub.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> uploadFile([FromForm] IFormFile imageFile, int id_company)
+        public async Task<IActionResult> uploadFile([FromForm] IFormFile imageFile)
         {
             //var id_user = this.GetTokenUserId();
 
@@ -41,11 +46,11 @@ namespace ImageHub.Controllers
                 {
                     Directory.CreateDirectory(_environment.WebRootPath + "\\images\\");
                 }
-                if (!Directory.Exists(_environment.WebRootPath + "\\images\\" + id_company))
+                if (!Directory.Exists(_environment.WebRootPath + "\\images\\" ))
                 {
-                    Directory.CreateDirectory(_environment.WebRootPath + "\\images\\" + id_company);
+                    Directory.CreateDirectory(_environment.WebRootPath + "\\images\\");
                 }
-                var relativeDir = "\\" + id_company + "\\" + DateTime.Now.Month;
+                var relativeDir =  "\\" + DateTime.Now.Month;
                 var targetDir = _environment.WebRootPath + "\\images" + relativeDir;
                 if (!Directory.Exists(targetDir))
                 {

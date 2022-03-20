@@ -1,3 +1,8 @@
+//
+// Patrick Carvalho
+// copyright 2022
+//
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +46,11 @@ namespace ImageHubApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ImageHubApi v1"));
+                app.UseSwaggerUI(c =>
+                { 
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ImageHubApi v1");
+                    c.InjectStylesheet("/swagger-ui/SwaggerDark.css");                    
+                });
             }
 
             app.UseHttpsRedirection();
