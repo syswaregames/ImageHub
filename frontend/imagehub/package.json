@@ -13,6 +13,7 @@
     "@types/react": "^17.0.41",
     "@types/react-dom": "^17.0.14",
     "autoprefixer": "^10.4.4",
+    "html5-file-selector": "^2.1.0",
     "postcss": "^8.4.12",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.4.3",

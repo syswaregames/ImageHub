@@ -8,6 +8,7 @@ import React, { ChangeEvent } from "react";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FileUploadComponent from './components/fileUpload.component';
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
         accept="image/png, image/jpeg" onChange={onChange}></input>
 
       <ToastContainer />
+      <FileUploadComponent />
 
     </div>
   );
