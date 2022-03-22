@@ -6,13 +6,24 @@
 
 import React, { ChangeEvent } from "react";
 
-import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
-import FileUploadComponent from './components/fileUpload.component';
+import DragDrop from "./components/DragDrop";
+
+/*
+
+
+      <input type="file"
+        id="avatar" name="avatar"
+        accept="image/png, image/jpeg" onChange={onChange}></input>
+
+
+*/
 
 function App() {
 
   async function onChange(e: ChangeEvent<HTMLInputElement>) {
+    /*
     if (e.target.files![0]) {
 
       const url_host = 'batmanhub.com';
@@ -27,7 +38,11 @@ function App() {
           method: 'POST',
           body: formData,
           headers: {
-            "accept": '*/*'
+            */
+            
+            //"accept": '*/*'
+
+            /*
           }
         });
 
@@ -41,22 +56,26 @@ function App() {
       catch (e) {
         toast("Error! Image not sent. " + e);
       }
-
-
-
-
+    
     }
+    */
   }
+  
+  /*
+      
 
-  return (
-    <div className="flex flex-col items-center justify-center h-screen text-red-300 bg-gradient-to-br from-gray-300 via-teal-700 to-gray-800">
-
-      <input type="file"
-        id="avatar" name="avatar"
-        accept="image/png, image/jpeg" onChange={onChange}></input>
+      flex flex-col items-center justify-center h-screen text-red-300 bg-gradient-to-br from-gray-300 via-teal-700 to-gray-800
 
       <ToastContainer />
-      <FileUploadComponent />
+  */
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen text-white-300 dark:bg-slate-800 dark:border-slate-500 ">
+
+
+      
+
+      <DragDrop/>
 
     </div>
   );
