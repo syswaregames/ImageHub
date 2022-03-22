@@ -1,3 +1,8 @@
+//
+// Patrick Carvalho
+// copyright 2022
+//
+
 import { ToastContainer, toast } from 'react-toastify';
 import { ChangeEvent } from "react";
 
@@ -60,17 +65,23 @@ function DragDrop() {
         Drop Here :) 💧
       </h2>
 
-
       <p>
       <br/>
+      <label className="rounded-lg flex items-center justify-center dark:text-slate-400 text-sm ">
+      💾  or Click Here
       <input type="file"
-        className="dark:text-slate-400 text-sm leading-6 truncate"
+        className="hidden dark:text-slate-400 text-sm leading-6 truncate"
         id="avatar" name="avatar"
         accept="image/png, image/jpeg" onChange={onChange} ></input>
+       
+        </label>
       </p>
-     
 
       <ToastContainer />
+
+
+
+
     </div>;
 }
 
