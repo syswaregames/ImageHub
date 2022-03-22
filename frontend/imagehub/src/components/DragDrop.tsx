@@ -1,46 +1,57 @@
 import { ToastContainer, toast } from 'react-toastify';
+import { ChangeEvent } from "react";
 
 function allowDrop(ev: React.DragEvent<HTMLDivElement>) {
     ev.preventDefault();
 }
 
+async function execUpload(ev : any)
+{
+    const url_host = 'batmanhub.com';
+    const url_backend = 'http://' + url_host + ':5000/ImageHubApi/image/upload';
 
+    const formData = new FormData();
+
+    try {
+
+      formData.append('imageFile', ev);
+      const response = await fetch(url_backend, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          "accept": '*/*'
+        }
+      });
+
+      if (response.ok) {
+        toast("Image sent, sucessful!");
+      } else {
+        toast("Error! Image not sent.");
+      }
+
+    }
+    catch (e) {
+      toast("Error! Image not sent. " + e);
+    }
+}
 
 async function drop(ev: React.DragEvent<HTMLDivElement>) {
     ev.preventDefault();
-    console.log(ev.dataTransfer);
-    console.log(ev.dataTransfer.files[0]);
+    //console.log(ev.dataTransfer);
+    //console.log(ev.dataTransfer.files[0]);
 
     if (ev.dataTransfer.files![0]) {
-
-        const url_host = 'batmanhub.com';
-        const url_backend = 'http://' + url_host + ':5000/ImageHubApi/image/upload';
-  
-        const formData = new FormData();
-  
-        try {
-  
-          formData.append('imageFile', ev.dataTransfer.files![0]);
-          const response = await fetch(url_backend, {
-            method: 'POST',
-            body: formData,
-            headers: {
-              "accept": '*/*'
-            }
-          });
-  
-          if (response.ok) {
-            toast("Image sent, sucessful!");
-          } else {
-            toast("Error! Image not sent.");
-          }
-  
-        }
-        catch (e) {
-          toast("Error! Image not sent. " + e);
-        }
+        execUpload(ev.dataTransfer.files![0]);
+       
     }
   
+}
+
+async function onChange(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.files![0]) {
+        execUpload(e.target.files![0]);
+    }
+        
 }
 
 function DragDrop() {
@@ -55,7 +66,7 @@ function DragDrop() {
       <input type="file"
         className="dark:text-slate-400 text-sm leading-6 truncate"
         id="avatar" name="avatar"
-        accept="image/png, image/jpeg" ></input>
+        accept="image/png, image/jpeg" onChange={onChange} ></input>
       </p>
      
 
