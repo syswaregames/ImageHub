@@ -90,9 +90,9 @@ namespace ImageHub.Controllers
 
                     var transaction = _unitOfWork.BeginTransaction();
 
-                    string query = "insert into imagehub.uploadfile (path_file) values ('.net');";
-                    
-                    int affectedRows = _unitOfWork.Conexao.Execute(query);
+                    string query = "insert into imagehub.uploadfile (path_file) values (@path_file);";                                    
+                    var _path_file = targetDir + "\\" + filename;
+                    int affectedRows = _unitOfWork.Conexao.Execute(query, param: new { path_file = _path_file });
                     transaction.Commit();
 
                     return Ok(url);
