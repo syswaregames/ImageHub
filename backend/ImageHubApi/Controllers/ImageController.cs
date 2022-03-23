@@ -4,6 +4,7 @@
 // copyright 2022
 //
 
+using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,6 +14,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Imaging;
+using ImageHubApi.Repositories;
 
 namespace ImageHub.Controllers
 {
@@ -20,10 +22,12 @@ namespace ImageHub.Controllers
     [ApiController]
     public class ImageController : Controller
     {
-        public static IWebHostEnvironment _environment;        
-        public ImageController(IWebHostEnvironment environment)
+        public static IWebHostEnvironment _environment;
+        public static IUnitOfWork _unitOfWork;        
+        public ImageController(IUnitOfWork unitOfWork, IWebHostEnvironment environment)
         {
-            _environment = environment;           
+            _environment = environment;    
+            _unitOfWork = unitOfWork;       
         }
 
         [HttpPost("upload")]
@@ -83,6 +87,14 @@ namespace ImageHub.Controllers
                     filestream.Write(imageBytes, 0, imageBytes.Length);
                     var url = relativeDir + "\\" + filename;
                     url = url.Replace("\\", "/");
+
+                    var transaction = _unitOfWork.BeginTransaction();
+
+                    string query = "insert into imagehub.uploadfile (path_file) values ('.net');";
+                    
+                    int affectedRows = _unitOfWork.Conexao.Execute(query);
+                    transaction.Commit();
+
                     return Ok(url);
                 }
 

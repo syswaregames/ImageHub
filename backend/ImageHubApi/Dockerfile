@@ -10,10 +10,11 @@ RUN pwsh -Command Write-Host "Mvc31: Gerating Docker Image and testing PowerShel
 # Build app
 COPY . ./
 RUN dotnet publish -c Release -o dist
-RUN mv /app/ImageHubApi.xml /app/ImageHubApi.XML
+#RUN mv /app/ImageHubApi.xml /app/ImageHubApi.XML
 
 # Build da image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine
 WORKDIR /app
 COPY --from=build-env /app/dist .
+EXPOSE 80
 ENTRYPOINT ["dotnet", "ImageHubApi.dll"]
